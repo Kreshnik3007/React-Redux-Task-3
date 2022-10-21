@@ -1,0 +1,81 @@
+.select {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select:active{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    width: 30%;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.user {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    margin:10px;
+    box-sizing: border-box;
+}
+
+
+
+.card button {
+    float: right;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.modal {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    background-color: black;
+  }
+
+
+  .modalButton {
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    margin-left: 10px;
+    color: white;
+    padding: 3px;
+    cursor: pointer;
+  }
+  .sort {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .sort button {
+    border: 50px;
+    background-color: cornflowerblue;
+    font-size: 14px;
+    border:none;
+    color:white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .cardsRow {
+    display: flex;
+    flex-wrap: wrap;
+  }
