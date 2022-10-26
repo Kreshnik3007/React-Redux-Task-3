@@ -10,8 +10,8 @@ const selectUserReducer = (state = initialState, action) => {
         ...state,
         users: action.payload.map((user) => {
           return {
-            id: user.email,
-            key: user.email,
+            id: user.id,
+            key: user.id,
             label: user?.name,
             email: user?.email,
             address: user.address?.street,
@@ -21,8 +21,6 @@ const selectUserReducer = (state = initialState, action) => {
           };
         }),
       };
-    case "FETCH_USERS":
-      return { ...state };
     case "SELECTED_USER":
       return {
         ...state,

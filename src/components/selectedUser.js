@@ -2,36 +2,28 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import classes from "./user.module.css";
-import ReactModal from "react-modal";
-import allActions from "../store/actions";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import allActions from "../store/actions";
+import CustomModal from "./CustomModal";
+
+
 
 const SelectedUser = () => {
+  const [selectedUser, setSelectedUser] = useState(null);
   const selectedUsers = useSelector((state) => state.selectedUsers.selected);
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  let subtitle;
+  
 
-  const triggerModal = () => {
+  const triggerModal = (user) => {
+    setSelectedUser(user);
     setModalVisible(!modalVisible);
   };
 
-  const afterOpenModal = () => {
-    subtitle.style.color = "#cornflowerblue";
-  };
+ 
 
-  const deleteUser = (user) => {
-    dispatch(allActions.deleteUserSelected(user));
+  const deleteUser = () => {
+    dispatch(allActions.deleteUserSelected(selectedUser));
     setModalVisible(false);
   };
 
@@ -50,27 +42,9 @@ const SelectedUser = () => {
           selectedUsers.map((user) => {
             return (
               <div key={user.id} className={classes.card}>
-                <ReactModal
-                  isOpen={modalVisible}
-                  onAfterOpen={afterOpenModal}
-                  style={customStyles}
-                  contentLabel="Modal"
-                  ariaHideApp={false}
-                >
-                  <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-                    This user will be deleted! Are you sure you want to proceed?
-                  </h2>
-                  <button onClick={() => triggerModal()}>Close</button>
-                  <button
-                    key={user.id}
-                    onClick={() => deleteUser(user)}
-                    className={classes.modalButton}
-                  >
-                    Delete
-                  </button>
-                </ReactModal>
+                
                 <div className={classes.user}>
-                  <button onClick={triggerModal}>X</button>
+                  <button onClick={() => triggerModal(user)}>X</button>
                   <h2>{user.label}</h2>
                   <p>E-Mail: {user.email}</p>
                   <p>Adress: {user.address}</p>
@@ -87,6 +61,8 @@ const SelectedUser = () => {
               </div>
             );
           })}
+          <CustomModal modalVisible={modalVisible} deleteUser={deleteUser} setModalVisible={setModalVisible}/>
+
       </div>
     </>
   );
